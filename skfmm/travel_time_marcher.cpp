@@ -70,13 +70,13 @@ double travelTimeMarcher::updatePointOrderTwo(int i, std::set<int>avoid_dim)
       double tp = oneThird*(4*value1-value2);
       a+=idx2_[dim]*aa;
       b-=idx2_[dim]*2*aa*tp;
-      c+=idx2_[dim]*aa*pow(tp,2);
+      c+=idx2_[dim]*aa*tp*tp;
     }
     else if (value1<maxDouble)
     {
       a+=idx2_[dim];
       b-=idx2_[dim]*2*value1;
-      c+=idx2_[dim]*pow(value1,2);
+      c+=idx2_[dim]*value1*value1;
     }
   }
   try{
@@ -103,9 +103,9 @@ double travelTimeMarcher::solveQuadratic(int i, const double &a,
                                          const double &b,
                                          double &c)
 {
-  c -= 1/pow(speed_[i],2);
+  c -= 1/(speed_[i]*speed_[i]);
   double r0=0;
-  double det = pow(b,2)-4*a*c;
+  double det = b*b-4*a*c;
   if (det>=0)
   {
     r0 = (-b+sqrt(det))/2.0/a;

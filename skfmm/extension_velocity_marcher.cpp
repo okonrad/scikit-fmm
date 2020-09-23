@@ -64,8 +64,9 @@ void extensionVelocityMarcher::initalizeFrozen()
       {
         if (ldistance[dim] != 0.0)
         {
-          numerator += lspeed[dim]/pow(ldistance[dim],2);
-          denominator += 1/pow(ldistance[dim],2);
+		  const double ldistpow = ldistance[dim]*ldistance[dim];
+          numerator += lspeed[dim]/ldistpow;
+          denominator += 1/ldistpow;
         }
       }
       if (denominator != 0.0)
